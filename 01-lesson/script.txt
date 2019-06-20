@@ -1,0 +1,12 @@
+on run {input, parameters}
+  set destination to choose folder ¬
+    with prompt "Select Destination Folder" ¬
+    default location (path to documents folder)
+  set thingsToMove to ""
+  repeat with thing in input
+    set thingsToMove to thingsToMove & " \"" & POSIX path of thing & "\""
+  end repeat
+
+  do shell script "mv" & thingsToMove & " \"" & POSIX path of destination & "\""
+end run
+
